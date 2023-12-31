@@ -10,7 +10,6 @@ import {MongoDBAdapter} from "@auth/mongodb-adapter";
 import clientPromise from "@/libs/mongoConnect";
 
 export const authOptions = {
-    secret:process.env.SECRET,
     adapter: MongoDBAdapter(clientPromise),
     providers: [
         GoogleProvider({
