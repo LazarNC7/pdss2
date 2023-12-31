@@ -17,13 +17,12 @@ export default function Home() {
               <p>
                   I am a results-oriented professional with a strong
                   background in marketing and project management, holding a
-                  Bachelor's degree in Business Administration. Experienced in
+                  Bachelors degree in Business Administration. Experienced in
                   developing and executing successful marketing campaigns, I have
                   consistently contributed to increased brand visibility and customer
                   engagement. Proficient in leveraging digital marketing channels,
                   including social media, I bring a strategic mindset
                   and analytical skills to drive marketing objectives.
-
               </p>
               <p>
                   Beyond marketing, I excel in project management, overseeing end-to-end
