@@ -2,8 +2,7 @@ import { getServerSession } from "next-auth";
 import { UserInfo } from "@/app/models/UserInfo";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 
-
-export default async function handler(req, res) {
+export default async function isAdmin(req, res) {
     const session = await getServerSession(authOptions);
     const userEmail = session?.user?.email;
 
