@@ -1,20 +1,15 @@
-// src/app/api/auth/[...nextauth]/route.js
-import { getServerSession } from "next-auth";
+import  {getServerSession} from "next-auth";
+import {User} from "@/app/models/User";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import {UserInfo} from "../../../models/UserInfo";
 import CredentialsProvider from "next-auth/providers/credentials";
 import * as mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import { MongoDBAdapter } from "@auth/mongodb-adapter";
+import {MongoDBAdapter} from "@auth/mongodb-adapter";
 import clientPromise from "@/libs/mongoConnect";
 
-export const config = {
-    api: {
-        bodyParser: false,
-    },
-};
-
-const authOptions = {
+export const authOptions = {
     adapter: MongoDBAdapter(clientPromise),
     providers: [
         GoogleProvider({
@@ -22,31 +17,32 @@ const authOptions = {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         }),
         CredentialsProvider({
-            name: "credentials",
+            name:"credentials",
 
             credentials: {
                 username: { label: "Username", type: "email", placeholder: "test@example.com" },
-                password: { label: "Password", type: "password" },
+                password: { label: "Password", type: "password" }
             },
             async authorize(credentials, req) {
                 const email = credentials?.email;
                 const password = credentials?.password;
 
                 mongoose.connect(process.env.MONGO_URL);
-                const user = await User.findOne({ email });
+                const user = await User.findOne({email});
                 const passwordOk = user && bcrypt.compareSync(password, user.password);
 
-                if (passwordOk) {
+                if(passwordOk){
                     //document.write("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
                     return user;
                 }
 
                 return null;
-            },
-        }),
+
+            }
+        })
     ],
     session: {
-        strategy: "jwt",
+        strategy:"jwt",
     },
     secret: process.env.SECRET,
     pages: {
@@ -54,4 +50,7 @@ const authOptions = {
     },
 };
 
-export default NextAuth(authOptions);
+
+const handler = NextAuth(authOptions);
+
+//export { handler as GET, handler as POST }
