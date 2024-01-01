@@ -39,10 +39,11 @@ const authOptions =  {
             }
         })
     ],
+    secret: process.env.SECRET,
     session: {
         strategy:"jwt",
     },
-    secret: process.env.SECRET,
+    
     pages: {
         signIn: "/login",
     },

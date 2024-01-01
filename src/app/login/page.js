@@ -10,9 +10,9 @@ export default function LoginPage(){
     const [password, setPassword] = useState('');
     const [loginInProgress, setLoginInProgress] = useState(false);
     async function handleFormSubmit(ev){
-        ev.preventDefault();
+        
         setLoginInProgress(true);
-
+        ev.preventDefault();
         await signIn('credentials', {email, password, callbackUrl: '/'});
         setLoginInProgress(false);
     }
@@ -32,7 +32,8 @@ export default function LoginPage(){
                 <div className="my-4 text-center text-gray-500">
                     or login with provider
                 </div>
-                <button type="button" onClick={() => signIn('google', {callbackUrl: '/'})}
+                <button type="button" onClick={(ev) => {ev.preventDefault();
+                signIn('google', {callbackUrl: '/'})}}
                         className="flex gap-4 justify-center">
                     <Image src={'/google_icon.png'} alt={''} width={20} height={20}/>
                     Login with Google</button>
