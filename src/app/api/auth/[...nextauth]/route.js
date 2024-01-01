@@ -9,7 +9,7 @@ import bcrypt from "bcrypt";
 import {MongoDBAdapter} from "@auth/mongodb-adapter";
 import clientPromise from "@/libs/mongoConnect";
 
-export const authOptions = {
+const authOptions = {
     adapter: MongoDBAdapter(clientPromise),
     providers: [
         GoogleProvider({
