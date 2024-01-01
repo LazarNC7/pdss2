@@ -10,7 +10,7 @@ import bcrypt from "bcrypt";
 const authOptions =  {
     
     adapter: MongoDBAdapter(clientPromise),
-    secret: process.env.SECRET,
+    secret: process.env.NEXTAUTH_SECRET,
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
