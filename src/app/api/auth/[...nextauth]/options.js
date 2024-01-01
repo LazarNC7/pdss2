@@ -9,6 +9,7 @@ import bcrypt from "bcrypt";
 
 const authOptions =  {
     adapter: MongoDBAdapter(clientPromise),
+    secret: process.env.SECRET,
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
@@ -39,7 +40,7 @@ const authOptions =  {
             }
         })
     ],
-    secret: process.env.SECRET,
+    
     session: {
         strategy:"jwt",
     },
